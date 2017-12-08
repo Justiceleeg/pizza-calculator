@@ -41,7 +41,7 @@ class PizzaCalculator extends Component {
 }
 
 const WithPizzaCalculations = WrappedComponent => {
-  return class extends Component {
+ const Container = class extends Component {
     state = { ...initialState };
     
       updateNumberOfPeople = event => {
@@ -77,6 +77,10 @@ const WithPizzaCalculations = WrappedComponent => {
         );
       }
   }
+
+  Container.displayName = `WithPizzaCalculations(${ WrappedComponent.displayName || WrappedComponent.name })`
+
+  return Container;
 }
 
 const PizzaContainer = WithPizzaCalculations(PizzaCalculator);
